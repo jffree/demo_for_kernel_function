@@ -26,7 +26,7 @@ static int demo_prepare_reply(struct genl_info *info, u8 cmd, struct sk_buff **s
 	/*
 	 * If new attributes are added, please revisit this allocation
 	 */
-	skb = genlmsg_new(size, GFP_KERNEL);
+	skb = genlmsg_new(size, GFP_KERNEL);  //为genetlink消息分配内存
 	if (!skb)
 		return -ENOMEM;
 
@@ -47,7 +47,7 @@ static int demo_prepare_reply(struct genl_info *info, u8 cmd, struct sk_buff **s
 static int demo_mk_reply(struct sk_buff *skb, int aggr, void *data, int len)  
 {  
     /* add a netlink attribute to a socket buffer */  
-    return nla_put(skb, aggr, len, data); 
+    return nla_put(skb, aggr, len, data);  //将一个attr加入到一个socket buffer中，即为genetlink添加payload
 
 	/* 
 	 * nla是可以分level的(调用nla_nest_start和nla_nest_end进行)，
@@ -58,12 +58,12 @@ static int demo_mk_reply(struct sk_buff *skb, int aggr, void *data, int len)
 
 static int demo_send_reply(struct sk_buff *skb, struct genl_info *info)
 {
-	struct genlmsghdr *genlhdr = nlmsg_data(nlmsg_hdr(skb));
-	void *reply = genlmsg_data(genlhdr);
+	struct genlmsghdr *genlhdr = nlmsg_data(nlmsg_hdr(skb));  //获取netlink消息的数据payload地址
+	void *reply = genlmsg_data(genlhdr);  //根据genelink消息头地址，获取netlink数据payload地址
 
-	genlmsg_end(skb, reply);
+	genlmsg_end(skb, reply);  //确定最终的消息体
 
-	return genlmsg_reply(skb, info);
+	return genlmsg_reply(skb, info);  //回复消息
 }
 
 static int cmd_attr_echo_message(struct genl_info *info)
@@ -83,7 +83,7 @@ static int cmd_attr_echo_message(struct genl_info *info)
 	pr_info("demo generic netlink receive echo mesg %s\n", msg);  
 
 	/* 回发消息 */
-	size = nla_total_size(strlen(msg)+1);
+	size = nla_total_size(strlen(msg)+1);  //要回发消息的attr的大小，当前仅为一个attr
 	
 	/* 准备构建消息 */
 	ret = demo_prepare_reply(info, DEMO_CMD_REPLY, &rep_skb, size);

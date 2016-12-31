@@ -13,7 +13,7 @@
 ```
 make
 sudo insmod netlink_kernel.ko
-kmesg
+dmesg
 ```
 
 #### 生成应用层可执行文件，执行，并查看内核信息
@@ -22,6 +22,15 @@ kmesg
 gcc -o netlink_user netlink_user.c
 sudo ./netlink_user
 dmesg
+```
+
+#### 卸载内核模块，执行清理步骤
+
+```
+sudo rmmod netlink_kernel
+dmesg
+make clean
+rm -f netlink_user
 ```
 
 #### 关于用户层源码中A、B、C处 `*pid`的解释

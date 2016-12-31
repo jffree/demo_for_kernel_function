@@ -142,7 +142,7 @@ static int demo_get_family_id(int sd)
 
 	/* 解析family id */
 	na = (struct nlattr *) GENLMSG_DATA(&ans);  //获取到genetlink的attr地址
-	na = (struct nlattr *) ((char *) na + NLA_ALIGN(na->nla_len));  //为什么要略过第一个？？
+	na = (struct nlattr *) ((char *) na + NLA_ALIGN(na->nla_len));  //为什么要略过第一个，请查看genetlink的消息封装流程
 	if (na->nla_type == CTRL_ATTR_FAMILY_ID) {
 		id = *(__u16 *) NLA_DATA(na);   //获得真正返回的数据
 	}
