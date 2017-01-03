@@ -92,7 +92,7 @@ static int demo_send_cmd(int sd, __u16 nlmsg_type, __u32 nlmsg_pid,
 	msg.g.version = DEMO_GENL_VERSION;
 	na = (struct nlattr *) GENLMSG_DATA(&msg);  //获取attr的实际地址
 	na->nla_type = nla_type;
-	na->nla_len = nla_len + 1 + NLA_HDRLEN;   //为什么要加1？？？？
+	na->nla_len = nla_len  + NLA_HDRLEN;
 	memcpy(NLA_DATA(na), nla_data, nla_len);  //确定attr的实际内容
 	msg.n.nlmsg_len += NLMSG_ALIGN(na->nla_len);   //nlmsg_len的长度为netlink消息头 + genetlink的消息头 + attr长度
 
