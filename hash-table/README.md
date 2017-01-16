@@ -24,6 +24,10 @@ dmesg
 
 #### 其他
 
+* 我的文章
+
+[ kernel 中的 hash list  ](https://jffree.github.io/2017/01/08/kernel-%E4%B8%AD%E7%9A%84-hash-list/)
+
 ##### 二级指针的使用
 
 * 若想改变指针的内容，则只需要使用一级指针
