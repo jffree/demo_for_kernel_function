@@ -7,4 +7,6 @@ This is a demo about some linux kernel function
 
 #### hash table  （已完成）
 
-#### notification chain  （准备完成）
+#### notification chain  （已完成）
+
+#### synchronization mechanism  （准备完成）
