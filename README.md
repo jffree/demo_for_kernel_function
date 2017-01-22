@@ -10,3 +10,9 @@ This is a demo about some linux kernel function
 #### notification chain  （已完成）
 
 #### synchronization mechanism  （准备完成）
+
+##### atomic （已有README）
+
+##### per_cpu （已完成）
+
+##### memory barrier （已有README）
